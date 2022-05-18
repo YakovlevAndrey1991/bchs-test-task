@@ -22,6 +22,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+
+
 }
 
 .App-link {
@@ -35,4 +37,20 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.links {
+  display: flex;
+  align-items: flex-end;
+
+  text-align: right;
+  margin-bottom: 50px;
+}
+.link {
+  margin-left: 20px;
+  text-decoration: none;
+  color: white;
+}
+.link:hover {
+  color: #61dafb;
 }

@@ -1,0 +1,20 @@
+.selects {
+    display: inline-block;
+}
+.selects select {
+
+}
+
+.span-result {
+    margin-top: 25px;
+    text-align: center;
+    margin-bottom: 50px;
+    width: 600px;
+    height: 30px;
+}
+.span-result span {
+    display: block;
+    width: 100px;
+    height: 100%;
+    margin: 0 auto;
+}

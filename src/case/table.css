@@ -1,0 +1,46 @@
+.td-with-button button {
+    margin-left: 10px ;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.td-with-button {
+    margin: 0 auto;
+}
+
+.span1 {
+    width: 50px;
+}
+.select-size {
+    font-size: 15px;
+
+}
+
+.select-size select {
+    width: 50px;
+    height: 20px;
+    font-size: 10px;
+}
+
+button:hover {
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+}
+
+.btc-div {
+    display: inline-block;
+    /*margin-left: 10px;*/
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    background-color: #b8860b;
+}
+.eth-div {
+    display: inline-block;
+    /*margin-left: 10px;*/
+    margin: 0 auto;
+    width: 20px;
+    height: 20px;
+    background-color: grey;
+}

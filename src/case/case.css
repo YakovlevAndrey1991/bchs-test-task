@@ -1,0 +1,17 @@
+.coin-table {
+    font-size: 20px;
+}
+.pie {
+    margin: 0 auto;
+    align-items: center;
+    width: 350px;
+    height: 350px;
+
+}
+.btn-d {
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+.input {
+    width: 125px;
+}
