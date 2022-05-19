@@ -53,13 +53,13 @@ export default class BarChart extends Component {
     render() {
         return (
             <>
-                <div className='div-chart'>
+                <div>
                     <p>Bitcoin</p>
                     <Chart1 date={this.state.dateBitcoin}
                             prices={this.state.pricesBitcoin}
                     />
                 </div>
-                <div className='div-chart'>
+                <div>
                     <p>Ethereum</p>
                     <Chart1 date={this.state.dateEthereum}
                             prices={this.state.pricesEthereum}
