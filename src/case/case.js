@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import CoinTable from "./table";
-import Chart2 from "../charts/diagramm";
 import Pie2 from "../charts/diagramm";
 
 import './case.css'
@@ -10,8 +9,10 @@ export default class Case extends Component {
     state = {
         counterBtc: 0,
         counterEth: 0,
+
         buyCounterBtc: 0,
         buyCounterEth: 0,
+
         counterSize: 1,
 
         btcUsd: null,
@@ -19,7 +20,6 @@ export default class Case extends Component {
         totalUsd: 0,
 
         dataPie: []
-
     }
 
     onBuyBtc = () => {
@@ -28,12 +28,6 @@ export default class Case extends Component {
             buyCounterBtc: 0,
         }, this.calcBtc)
     }
-    // onBuyEth = () => {
-    //     this.setState({
-    //         counterEth: +this.state.counterEth + (+this.state.buyCounterEth),
-    //         buyCounterEth: 0,
-    //     }, this.calcEth)
-    // }
 
     onBuyEth = () => {
         this.setState({
@@ -98,34 +92,20 @@ export default class Case extends Component {
                 }, this.calcEth)
 
                 break
-            case 'usd':
-                this.setState({
-                    counterUsd: +this.state.counterUsd + (+this.state.counterSize)
-                })
-
-                break
         }
     }
 
     onMinus = (id) => {
         switch (id) {
             case 'btc':
-
                 this.setState({
                     counterBtc: Math.max(+this.state.counterBtc - (+this.state.counterSize),0)
                 }, this.calcBtc)
-
                 break
             case 'eth':
                 this.setState({
                     counterEth: Math.max(+this.state.counterEth - (+this.state.counterSize),0)
                 }, this.calcEth)
-
-                break
-            case 'usd':
-                this.setState({
-                    counterUsd: Math.max(+this.state.counterUsd - (+this.state.counterSize),0)
-                })
                 break
         }
     }
@@ -155,7 +135,6 @@ export default class Case extends Component {
     render() {
 
         const {bitcoin, ethereum} = this.props
-
 
         return (
             <div className='coin-table'>

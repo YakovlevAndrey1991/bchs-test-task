@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Chart, LineElement, BarElement, CategoryScale, LinearScale, PointElement, ArcElement} from 'chart.js';
-import {Line, Pie} from "react-chartjs-2";
-import {getRelativePosition} from 'chart.js/helpers';
+import {Line} from "react-chartjs-2";
 
 Chart.register(
     CategoryScale,

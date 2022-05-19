@@ -1,6 +1,6 @@
 import React, {Component} from "react";
-import {Chart, ArcElement, PieDataPoint, PieController} from "chart.js";
-import {Pie, Doughnut} from "react-chartjs-2";
+import {Chart, ArcElement, PieController} from "chart.js";
+import {Pie} from "react-chartjs-2";
 
 Chart.register(
     ArcElement,
@@ -26,7 +26,7 @@ export default class Pie2 extends Component {
             },
 
             datasets: [{
-                label: 'My First Dataset',
+                label: 'This Label is not working, Idk why',
                 data: dataCoins
 
                 ,
@@ -39,30 +39,10 @@ export default class Pie2 extends Component {
             }]
         };
 
-
-        // const options = {
-        //     title: {
-        //         display: true,
-        //         text: "COVID-19 Cases of Last 3 Months",
-        //         fontSize: 1445,
-        //         color: '#333'
-        //     },
-        //     legend: {
-        //         display: true, //Is the legend shown?
-        //         position: "bot" //Position of the legend.
-        //     }
-        // };
-
         return (
             <div>
                 <p>Диаграмма распределение валют</p>
-
-                <Pie
-                    data={data}
-                    width={200}
-                    height={100}
-                />
-
+                <Pie data={data}/>
             </div>
         )
 

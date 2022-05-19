@@ -8,7 +8,6 @@ export default function CoinTable(
         bitcoin,
         ethereum,
         counterBtc,
-        counterUsd,
         counterEth,
         onChangeSize,
         onBuyBtc,
@@ -27,12 +26,9 @@ export default function CoinTable(
 
         <>
             <p>Ваш криптовалютный портфель</p>
-
-
             <Table border="1">
                 <thead>
                 <tr>
-
                     <th>Валюта</th>
                     <th>Цена, $</th>
                     <th>У вас в портфеле:
@@ -47,7 +43,6 @@ export default function CoinTable(
                         </div></th>
                     <th>
                         Покупка
-                        {/*<button onClick={onBuy}>Купить</button>*/}
                     </th>
                     <th>
                         Продажа
@@ -103,7 +98,6 @@ export default function CoinTable(
                         Текущая стоимость портфеля ($):
                     </td>
                     <td colSpan={5}>{totalUsd}</td>
-
                 </tr>
                 </tbody>
             </Table>

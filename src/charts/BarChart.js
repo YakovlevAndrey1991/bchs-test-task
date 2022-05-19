@@ -1,10 +1,7 @@
 import React, {Component} from "react";
-import {Chart, LineElement, BarElement, CategoryScale, LinearScale, PointElement} from 'chart.js';
-import {Line} from "react-chartjs-2";
-import Chart1 from "./charts/chart";
-import GetData from "./getData/getData";
-import {getRelativePosition} from 'chart.js/helpers';
+import Chart1 from "./chart";
 
+import './barChart.css'
 
 export default class BarChart extends Component {
 
@@ -56,14 +53,19 @@ export default class BarChart extends Component {
     render() {
         return (
             <>
-                <p>Bitcoin</p>
-                <Chart1 date={this.state.dateBitcoin}
-                        prices={this.state.pricesBitcoin}
-                />
-                <p>Ethereum</p>
-                <Chart1 date={this.state.dateEthereum}
-                        prices={this.state.pricesEthereum}
-                />
+                <div className='div-chart'>
+                    <p>Bitcoin</p>
+                    <Chart1 date={this.state.dateBitcoin}
+                            prices={this.state.pricesBitcoin}
+                    />
+                </div>
+                <div className='div-chart'>
+                    <p>Ethereum</p>
+                    <Chart1 date={this.state.dateEthereum}
+                            prices={this.state.pricesEthereum}
+                    />
+                </div>
+
             </>
         )
 

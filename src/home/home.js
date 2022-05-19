@@ -1,10 +1,8 @@
 import React, {Component} from "react";
-import BarChart from "../BarChart";
-// import GetData from "./getData/getData";
+import BarChart from "../charts/BarChart";
 import SelectFrom from "../selects/selectFrom";
 import SelectTo from "../selects/selectTo";
 import './home.css'
-import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 
 
 export default class Home extends Component {
@@ -40,8 +38,7 @@ export default class Home extends Component {
                         <span>{result}</span>
                     </div>
                     <p>График изменения курса за последние 14 дней</p>
-                    <BarChart/>
-
+                        <BarChart/>
                 </header>
             </div>
 

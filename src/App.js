@@ -1,19 +1,11 @@
-import React, {Component, useState} from "react";
+import React, {Component} from "react";
 import './App.css';
-import BarChart from "./BarChart";
-// import GetData from "./getData/getData";
 import Case from "./case/case";
-import SelectFrom from "./selects/selectFrom";
-import SelectTo from "./selects/selectTo";
-
 import Home from "./home/home";
 
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 
-
 export default class App extends Component {
-
-    // getData = new GetData;
 
     constructor() {
         super();

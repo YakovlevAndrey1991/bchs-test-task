@@ -1,0 +1,7 @@
+.div-chart {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 600px;
+}
