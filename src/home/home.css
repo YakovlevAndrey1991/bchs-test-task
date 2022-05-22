@@ -1,6 +1,14 @@
 .selects {
     display: inline-block;
 }
+
+.current-rates {
+    box-sizing: border-box;
+margin-top: -20px;
+    align-items: flex-end;
+    /*width: 300px;*/
+    /*height: 150px;*/
+}
 .selects select {
 
 }

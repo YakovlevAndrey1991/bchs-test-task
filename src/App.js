@@ -1,17 +1,14 @@
 import React, {Component} from "react";
-import './App.css';
+import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import GetData from "./services/getData";
 import Case from "./case/case";
 import Home from "./home/home";
 
-import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import './App.css';
 
 export default class App extends Component {
 
-    constructor() {
-        super();
-        this.updateBitcoin()
-        this.updateEthereum()
-    }
+    getData = new GetData()
 
     state = {
         bitcoin: null,
@@ -20,21 +17,17 @@ export default class App extends Component {
         to: null,
         result: null,
         count: 1,
-        usd1: 1
+        usd: 1,
+        coinName: ''
     }
 
-    getData = async (url) => {
-        const result = await fetch(url)
-
-        if (!result.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${result.status}`)
-        }
-
-        return await result.json()
+    componentDidMount() {
+        this.getBitcoinPrice()
+        this.getEthereumPrice()
     }
 
-    updateBitcoin = () => {
-        this.getData('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd')
+    getBitcoinPrice = () => {
+        this.getData.getPrice('bitcoin')
             .then((data) => {
                 this.setState({
                     bitcoin: data.bitcoin.usd
@@ -42,8 +35,8 @@ export default class App extends Component {
             })
     }
 
-    updateEthereum = () => {
-        this.getData('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd')
+    getEthereumPrice = () => {
+        this.getData.getPrice('ethereum')
             .then((data) => {
                 this.setState({
                     ethereum: data.ethereum.usd
@@ -57,27 +50,23 @@ export default class App extends Component {
             this.setState({
                 result: newResult
             })
-        } else {
-            return
         }
     }
 
-    onChangeSelectFrom = (id) => (e) => {
-
-        if (id === 'from') {
-            this.setState({
-                from: e.target.value
-            }, this.calcResult)
+    onChangeSelect = (id) => (e) => {
+        switch (id) {
+            case 'from':
+                this.setState({
+                    from: e.target.value
+                }, this.calcResult)
+                break
+            case 'to':
+                this.setState({
+                    to: e.target.value
+                }, this.calcResult)
+                break
+            default:
         }
-    }
-
-    onChangeSelectTo = (id) => (e) => {
-        if (id === 'to') {
-            this.setState({
-                to: e.target.value
-            }, this.calcResult)
-        }
-
     }
 
     onInputChange = (e) => {
@@ -88,7 +77,7 @@ export default class App extends Component {
 
     render() {
 
-        const {count, bitcoin, ethereum, result, usd1} = this.state
+        const {count, bitcoin, ethereum, result, usd, coinName} = this.state
 
         return (
             <BrowserRouter>
@@ -96,37 +85,32 @@ export default class App extends Component {
                     <header className="App-header">
                         <h1>Калькулятор и конвертер криптовалют</h1>
                         <div className='links'>
-                            <Link className='link' to='/'>Калькулятор</Link>
-                            <Link className='link' to='/case'>Портфель</Link>
+                            <Link className='link' to="/">Калькулятор</Link>
+                            <Link className='link' to="/case">Портфель</Link>
                         </div>
 
                         <Routes>
-                           <Route path={'/'} element={
-                               <Home
-                                   bitcoin={bitcoin}
-                                   ethereum={ethereum}
-                                   count={count}
-                                   onChangeSelectFrom={this.onChangeSelectFrom}
-                                   onChangeSelectTo={this.onChangeSelectTo}
-                                   onInputChange={this.onInputChange}
-                                   result={result}
-                                   usd1={usd1}
-                               />
-                           }/>
-                        </Routes>
-                        <Routes>
-                            <Route path='/case' element={<Case bitcoin={bitcoin}
+                            <Route path="/" element={
+                                <Home
+                                    onChangeSelect={this.onChangeSelect}
+                                    coinName={coinName}
+                                    bitcoin={bitcoin}
+                                    ethereum={ethereum}
+                                    count={count}
+                                    onInputChange={this.onInputChange}
+                                    result={result}
+                                    usd={usd}
+                                />
+                            }/>
+
+                            <Route path="/case" element={<Case bitcoin={bitcoin}
                                                                ethereum={ethereum}
                                                                count={count}/>}/>
                         </Routes>
-
                     </header>
                 </div>
             </BrowserRouter>
-
-
         );
     }
-
 }
 

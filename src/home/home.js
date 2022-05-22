@@ -9,7 +9,7 @@ export default class Home extends Component {
 
     render() {
 
-        const {count, bitcoin, ethereum, result, onChangeSelectFrom, onChangeSelectTo, onInputChange, usd1} = this.props
+        const {onChangeSelect, coinName, count, bitcoin, ethereum, result, onInputChange, usd} = this.props
 
         return (
             <div>
@@ -18,30 +18,26 @@ export default class Home extends Component {
                         <SelectFrom
                             bitcoin={bitcoin}
                             ethereum={ethereum}
-                            count={count}
-                            usd1={usd1}
-                            onChangeSelectFrom={onChangeSelectFrom}
+                            usd={usd}
+                            onChangeSelect={onChangeSelect}
                         />
-
                         <SelectTo
                             bitcoin={bitcoin}
                             ethereum={ethereum}
-                            count={count}
-                            usd1={usd1}
-                            onChangeSelectTo={onChangeSelectTo}
+                            usd={usd}
+                            onChangeSelect={onChangeSelect}
                         />
                     </div>
                     <div>
                         <input type="number" value={count} onChange={onInputChange}/>
                     </div>
                     <div className='span-result'>
-                        <span>{result}</span>
+                        <span>{coinName}{result}</span>
                     </div>
                     <p>График изменения курса за последние 14 дней</p>
-                        <BarChart/>
+                    <BarChart/>
                 </header>
             </div>
-
         );
     }
 

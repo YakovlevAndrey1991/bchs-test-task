@@ -1,16 +1,13 @@
 import React, {Component} from "react";
 import Chart1 from "./chart";
+import GetData from "../services/getData";
+import {reformDate, unboxPrice} from "../services/utilites";
 
 import './barChart.css'
 
 export default class BarChart extends Component {
 
-
-    constructor() {
-        super();
-        this.bitcoinLine()
-        this.ethereumLine()
-    }
+    getData = new GetData()
 
     state = {
         dateBitcoin: [],
@@ -19,47 +16,38 @@ export default class BarChart extends Component {
         pricesBitcoin: null
     }
 
-    getData = async (url) => {
-        const result = await fetch(url)
-
-        if (!result.ok) {
-            throw new Error(`Could not fetch ${url}, status: ${result.status}`)
-        }
-
-        return await result.json()
+    componentDidMount() {
+        this.bitcoinLine()
+        this.ethereumLine()
     }
 
-    bitcoinLine = () => this.getData('https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=14&interval=daily')
+
+    bitcoinLine = () => this.getData.getCoinHistory('bitcoin')
         .then(data => {
-            let date = data.prices.map((item) => item[0]).map(item => new Date(item).toLocaleDateString('en-US'))
-            let prices = data.prices.map((item) => item[1])
             this.setState({
-                dateBitcoin: date,
-                pricesBitcoin: prices
+                dateBitcoin: reformDate(data),
+                pricesBitcoin: unboxPrice(data)
             })
         })
 
-    ethereumLine = () => this.getData('https://api.coingecko.com/api/v3/coins/ethereum/market_chart?vs_currency=usd&days=14&interval=daily')
+    ethereumLine = () => this.getData.getCoinHistory('ethereum')
         .then(data => {
-            let date = data.prices.map((item) => item[0]).map(item => new Date(item).toLocaleDateString('en-US'))
-            let prices = data.prices.map((item) => item[1])
             this.setState({
-                dateEthereum: date,
-                pricesEthereum: prices
+                dateEthereum: reformDate(data),
+                pricesEthereum: unboxPrice(data)
             })
         })
-
 
     render() {
         return (
             <>
-                <div className='div-chart'>
+                <div>
                     <p>Bitcoin</p>
                     <Chart1 date={this.state.dateBitcoin}
                             prices={this.state.pricesBitcoin}
                     />
                 </div>
-                <div className='div-chart'>
+                <div>
                     <p>Ethereum</p>
                     <Chart1 date={this.state.dateEthereum}
                             prices={this.state.pricesEthereum}

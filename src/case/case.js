@@ -92,6 +92,7 @@ export default class Case extends Component {
                 }, this.calcEth)
 
                 break
+            default:
         }
     }
 
@@ -107,6 +108,7 @@ export default class Case extends Component {
                     counterEth: Math.max(+this.state.counterEth - (+this.state.counterSize),0)
                 }, this.calcEth)
                 break
+            default:
         }
     }
 
@@ -127,6 +129,8 @@ export default class Case extends Component {
                 this.setState({
                     buyCounterEth: e.target.value
                 })
+                break
+            default:
         }
     }
 
@@ -134,14 +138,26 @@ export default class Case extends Component {
 
     render() {
 
-        const {bitcoin, ethereum} = this.props
+        const { bitcoin, ethereum } = this.props
+        const { counterBtc, counterEth, btcUsd, ethUsd, dataPie , totalUsd, counterUsd } = this.state
 
         return (
             <div className='coin-table'>
                 <CoinTable
                     bitcoin={bitcoin}
                     ethereum={ethereum}
-                    counterBtc={this.state.counterBtc}
+
+                    counterBtc={counterBtc}
+                    counterEth={counterEth}
+                    counterUsd={counterUsd}
+
+                    btcUsd={btcUsd}
+                    ethUsd={ethUsd}
+
+                    totalUsd={totalUsd}
+
+                    onPlus={this.onPlus}
+                    onMinus={this.onMinus}
 
                     onBuyBtc={this.onBuyBtc}
                     onBuyEth={this.onBuyEth}
@@ -151,17 +167,9 @@ export default class Case extends Component {
 
                     onInputChange={this.onInputChange}
                     onChangeSize={this.onChangeSize}
-                    onPlus={this.onPlus}
-                    onMinus={this.onMinus}
-                    counterEth={this.state.counterEth}
-
-                    counterUsd={this.state.counterUsd}
-                    btcUsd={this.state.btcUsd}
-                    ethUsd={this.state.ethUsd}
-                    totalUsd={this.state.totalUsd}
                 />
                 <div className='pie'>
-                    <Pie2 dataCoins={this.state.dataPie}/>
+                    <Pie2 dataCoins={dataPie}/>
                 </div>
             </div>
 

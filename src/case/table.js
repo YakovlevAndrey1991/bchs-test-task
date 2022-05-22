@@ -41,12 +41,8 @@ export default function CoinTable(
                                 <option value="100">100</option>
                             </select>
                         </div></th>
-                    <th>
-                        Покупка
-                    </th>
-                    <th>
-                        Продажа
-                    </th>
+                    <th>Покупка</th>
+                    <th>Продажа</th>
                     <th>Стоимость ($):</th>
                 </tr>
                 </thead>
